@@ -1,26 +1,17 @@
-import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 
-import { FormContact } from './FormContact/FormContact';
-import { ListContacts } from './ListContacts/ListContacts';
-import { Filter } from './Filter/Filter';
-import { Loader } from './Loader/Loader';
-import { Header } from './Header/Header';
-import css from './App.module.css';
-import { selectIsLoading, selectError } from '../redux/contactsSlice';
+import ContactsPage from 'pages/ContactsPage';
+import WelcomePage from 'pages/WelcomePage';
+import LoginPage from 'pages/LoginPage';
+import RegistrationPage from 'pages/RegistrationPage';
 
 export const App = () => {
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-
   return (
-    <div className={css.appwrap}>
-      <Header />
-      {isLoading && !error && <Loader />}
-      <h1> Phonebook</h1>
-      <FormContact />
-      <h2>Contacts</h2>
-      <Filter />
-      <ListContacts />
-    </div>
+    <Routes>
+      <Route path="/" element={<WelcomePage />} />
+      <Route path="/register" element={<RegistrationPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/contacts" element={<ContactsPage />} />
+    </Routes>
   );
 };
