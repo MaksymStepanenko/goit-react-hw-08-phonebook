@@ -1,43 +1,72 @@
-import { fetchContacts, deleteContactsById, addContact } from 'services/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
+const $instance = axios.create({
+  baseURL: 'https://connections-api.herokuapp.com',
+});
 
+export const setToken = token => {
+  $instance.defaults.headers['Authorization'] = `Bearer ${token}`;
+};
 
-export const fetchContactsDataThunk = createAsyncThunk(
-  'contacts/fetchContactsDataThunk',
+export const clearToken = () => {
+  $instance.defaults.headers['Authorization'] = '';
+};
+
+export const registerUserThunk = createAsyncThunk(
+  'auth/register',
+  async (userData, thunkApi) => {
+    try {
+      const { data } = await $instance.post('/users/signup', userData);
+      setToken(data.token);
+
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const loginUserThunk = createAsyncThunk(
+  'auth/login',
+  async (userData, thunkApi) => {
+    try {
+      const { data } = await $instance.post('/users/login', userData);
+      setToken(data.token);
+
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const refreshUserThunk = createAsyncThunk(
+  'auth/refreshUser',
+  async (_, thunkApi) => {
+    const state = thunkApi.getState();
+    const token = state.auth.token;
+
+    try {
+      setToken(token);
+      const { data } = await $instance.get('/users/current');
+
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const logoutUserThunk = createAsyncThunk(
+  'auth/logout',
   async (_, thunkApi) => {
     try {
-      const contactsData = await fetchContacts();
-      return contactsData;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
+      const { data } = await $instance.post('/users/logout');
+      clearToken();
 
-export const deleteContactThunk = createAsyncThunk(
-  'contacts/deleteContactThunk',
-  async (id, thunkApi) => {
-    try {
-      const response = await deleteContactsById(id);
-      console.log('Елемент успішно видалений', response);
-      return id;
+      return data;
     } catch (error) {
-      console.error('Помилка під час видалення елементу', error);
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const addContactThunk = createAsyncThunk(
-  'contacts/addContactThunk',
-  async (data, thunkApi) => {
-    try {
-      const response = await addContact(data);
-      console.log('Елемент успішно доданий', response.data);
-      return response.data;
-    } catch (error) {
-      console.error('Помилка під час додавання елементу', error);
       return thunkApi.rejectWithValue(error.message);
     }
   }

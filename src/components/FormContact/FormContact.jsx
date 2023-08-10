@@ -1,65 +1,36 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
+
 import css from './FormContact.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/contactsSlice';
-import { addContactThunk } from 'redux/operation';
+
 
 export const FormContact = () => {
-  const contacts = useSelector(selectContacts);
-  const dispatch = useDispatch();
 
   const [contactName, setcontactName] = useState('');
   const [number, setNumber] = useState('');
 
-  const handleSubmit = e => {
-    e.preventDefault();
 
-    if (contacts.some(({ name }) => name === contactName)) {
-      window.alert(`${contactName} is already in your contacts`);
-      return;
-    }
+  // const handleChange = e => {
+  //   const { value, name } = e.target;
 
-    dispatch(
-      addContactThunk({
-        name: contactName,
-        phone: number,
-        id: nanoid(),
-      })
-      // addContact({
-      //   name: contactName,
-      //   number,
-      //   id: nanoid(),
-      // })
-    );
+  //   switch (name) {
+  //     case 'name':
+  //       setcontactName(value);
+  //       break;
+  //     case 'number':
+  //       setNumber(value);
+  //       break;
 
-    setcontactName('');
-    setNumber('');
-  };
-
-  const handleChange = e => {
-    const { value, name } = e.target;
-
-    switch (name) {
-      case 'name':
-        setcontactName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-
-      default:
-        return;
-    }
-  };
+  //     default:
+  //       return;
+  //   }
+  // };
 
   return (
-    <form onSubmit={handleSubmit} className={css.wrapper}>
+    <form className={css.wrapper}>
       <label className={css.formlabel}>
         Name
         <input
           className={css.forminput}
-          onChange={handleChange}
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -73,7 +44,6 @@ export const FormContact = () => {
         Number
         <input
           className={css.forminput}
-          onChange={handleChange}
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
