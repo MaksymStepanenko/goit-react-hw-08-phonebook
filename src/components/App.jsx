@@ -2,23 +2,26 @@ import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectToken } from 'redux/authReducer';
+import { selectToken, selectAuthentificated } from 'redux/authReducer';
 import { refreshUserThunk } from 'redux/operation';
 
 import ContactsPage from 'pages/ContactsPage';
 import WelcomePage from 'pages/WelcomePage';
 import LoginPage from 'pages/LoginPage';
 import RegistrationPage from 'pages/RegistrationPage';
+import { selectUserContacts } from 'redux/contactsReduser';
 
 export const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
+  const authentificated = useSelector(selectAuthentificated);
+  
 
-  useEffect(() => {
-    if (!token) return;
+   useEffect(() => {
+     if (!token || authentificated) return;
 
-    dispatch(refreshUserThunk());
-  }, [token, dispatch]);
+     dispatch(refreshUserThunk());
+   }, [token, dispatch, authentificated]);
 
   return (
     <Routes>

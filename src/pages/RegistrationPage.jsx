@@ -1,14 +1,20 @@
-import { useDispatch } from 'react-redux';
-import { RegisterForm } from 'components/RegisterForm.jsx/RegisterForm';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+
+import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 import { registerUserThunk } from 'redux/operation';
+import { selectAuthentificated } from 'redux/authReducer';
 
 const RegistrationPage = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const authenticated = useSelector(selectAuthentificated)
     
     const onSubmit = (data) => {
         console.log(data)
         dispatch(registerUserThunk(data));
     }
+  
+  if (authenticated) return <Navigate to="/contacts" />;
 
   return (
     <div>

@@ -1,4 +1,12 @@
+import { useDispatch } from "react-redux";
+import { logoutUserThunk } from "redux/operation";
+
 export const Header = () => {
+   const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(logoutUserThunk());
+  };
   return (
     <div>
       <div>
@@ -7,7 +15,7 @@ export const Header = () => {
 
       <div>
         <p>email</p>
-        <button>Log Out</button>
+        <button onClick={handleLogOut}>Log Out</button>
       </div>
     </div>
   );

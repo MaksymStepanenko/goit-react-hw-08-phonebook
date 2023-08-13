@@ -13,13 +13,6 @@ export const RegisterForm = ({ onSubmit }) => {
       email,
       password,
     });
-    // dispatch(
-    //   registerUserThunk({
-    //     name,
-    //     email,
-    //     password,
-    //   })
-    // );
   };
   return (
     <div>

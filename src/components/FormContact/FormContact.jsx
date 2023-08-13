@@ -1,41 +1,30 @@
-import { useState } from 'react';
-
 import css from './FormContact.module.css';
 
+export const FormContact = ({onSubmit}) => {
+  const handleSubmit = event => {
+    event.preventDefault();
 
-export const FormContact = () => {
+    const form = event.currentTarget;
 
-  const [contactName, setcontactName] = useState('');
-  const [number, setNumber] = useState('');
+    const name = form.elements.contactName.value;
+    const number = form.elements.contactNumber.value;
 
-
-  // const handleChange = e => {
-  //   const { value, name } = e.target;
-
-  //   switch (name) {
-  //     case 'name':
-  //       setcontactName(value);
-  //       break;
-  //     case 'number':
-  //       setNumber(value);
-  //       break;
-
-  //     default:
-  //       return;
-  //   }
-  // };
+    onSubmit({
+      name,
+      number,
+    });
+  };
 
   return (
-    <form className={css.wrapper}>
+    <form className={css.wrapper} onSubmit={handleSubmit}>
       <label className={css.formlabel}>
         Name
         <input
           className={css.forminput}
           type="text"
-          name="name"
+          name="contactName"
           pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          value={contactName}
           required
         />
       </label>
@@ -45,10 +34,9 @@ export const FormContact = () => {
         <input
           className={css.forminput}
           type="tel"
-          name="number"
+          name="contactNumber"
           pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          value={number}
           required
         />
       </label>
