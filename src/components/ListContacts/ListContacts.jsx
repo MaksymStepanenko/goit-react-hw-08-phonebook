@@ -1,33 +1,22 @@
-import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { deleteContactThunk } from 'redux/contactsReduser';
-import { selectUserContacts } from 'redux/contactsReduser';
 import css from './ListContacts.module.css';
 
-export const ListContacts = () => {
-  const contacts = useSelector(selectUserContacts);
-  const dispatch = useDispatch();
+export const ListContacts = ({ contacts, deleteContact }) => {
 
-  
-  const handleDeleteContact = id => {
-    dispatch(deleteContactThunk(id));
-  };
 
   const showContacts = Array.isArray(contacts) && contacts.length > 0;
   return (
     <ul className={css.ulwrap}>
       {showContacts &&
-        contacts.map(({ name, phone, id }) => {
+        contacts.map(({ name, number, id }) => {
           return (
             <li key={id}>
               <p>
-                {name} : {phone}
+                {name} : {number}
               </p>
               <button
                 className={css.btn}
                 type="button"
-                onClick={() => handleDeleteContact(id)}
+                onClick={() => deleteContact(id)}
               >
                 Delete
               </button>

@@ -1,20 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { useState } from 'react';
+
 
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 import { registerUserThunk } from 'redux/operation';
 import { selectAuthentificated } from 'redux/authReducer';
+import SuccessfulRegistrationPage from './SuccessfulRegistrationPage';
+
 
 const RegistrationPage = () => {
+  const [userName, setUserName] = useState('');
   const dispatch = useDispatch();
   const authenticated = useSelector(selectAuthentificated)
     
-    const onSubmit = (data) => {
-        console.log(data)
+  const onSubmit = (data) => {
+        setUserName(data.name)
         dispatch(registerUserThunk(data));
     }
   
-  if (authenticated) return <Navigate to="/contacts" />;
+  if (authenticated) return <SuccessfulRegistrationPage userName={userName} />;
 
   return (
     <div>

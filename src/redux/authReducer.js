@@ -48,6 +48,10 @@ const authSlice = createSlice({
       .addCase(loginUserThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+        alert(
+          'Oops...., something is error, check that the password and email are entered correctly' +
+          '        ' +  action.payload
+        );
       })
       // ----- REFRESH -----
       .addCase(refreshUserThunk.pending, state => {
