@@ -41,10 +41,7 @@ export const deleteContactThunk = createAsyncThunk(
 );
 
 const initialState = {
-    contacts: [{
-        name: 'daasdasd',
-        number: 'dadssadsa'
-    }],
+  contacts: [],
   isLoading: false,
   error: null,
 };
