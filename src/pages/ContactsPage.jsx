@@ -12,6 +12,7 @@ import {
 import { ListContacts } from 'components/ListContacts/ListContacts';
 import { selectAuthentificated } from 'redux/authReducer';
 
+
 const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectUserContacts);

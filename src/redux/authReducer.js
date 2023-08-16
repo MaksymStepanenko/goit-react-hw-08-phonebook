@@ -6,6 +6,10 @@ import {
   registerUserThunk,
 } from './operation';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { toastConfig } from 'config/toastConfig';
+
 const initialState = {
   isLoading: false,
   error: null,
@@ -33,6 +37,33 @@ const authSlice = createSlice({
       .addCase(registerUserThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+        // toast.error(
+        //   'Oops...., Your email address is already in use, please enter another email or go to the login page',
+        //   {
+        //     position: 'top-center',
+        //     autoClose: 5000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        //     theme: 'colored',
+        //   }
+        // );
+        toast('🦄 Wow so easy!', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+
+        // alert(
+        //   'Oops...., Your email address is already in use, please enter another email or go to the login page'
+        // );
       })
       // ----- LOGIN -----
       .addCase(loginUserThunk.pending, state => {

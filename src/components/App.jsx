@@ -20,6 +20,7 @@ export const App = () => {
     if (!token || authentificated) return;
 
     dispatch(refreshUserThunk());
+    
   }, [token, dispatch, authentificated]);
 
   return (
@@ -30,9 +31,9 @@ export const App = () => {
       <Route
         path="/contacts"
         element={
-          <PrivateRoute redirectTo="/">
+          <PrivateRoute redirectTo="/login">
             <ContactsPage />
-          </PrivateRoute>
+         </PrivateRoute>
         }
       />
     </Routes>
