@@ -11,19 +11,18 @@ import {
 } from 'redux/contactsReducer';
 import { ListContacts } from 'components/ListContacts/ListContacts';
 import { selectAuthentificated } from 'redux/authReducer';
-
+import Footer from 'components/Footer/Footer';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectUserContacts);
-  const authentificated = useSelector(selectAuthentificated)
+  const authentificated = useSelector(selectAuthentificated);
 
-    useEffect(() => {
-      if (!authentificated) return;
+  useEffect(() => {
+    if (!authentificated) return;
 
-      dispatch(requestContactsThunk());
-    }, [authentificated, dispatch]);
-
+    dispatch(requestContactsThunk());
+  }, [authentificated, dispatch]);
 
   const onSubmit = data => {
     if (contacts.some(contact => contact.name === data.name))
@@ -35,13 +34,15 @@ const ContactsPage = () => {
     dispatch(deleteContactThunk(id));
   };
 
-
   return (
     <div>
       <Header />
-      <p>contactpage</p>
-      <FormContact onSubmit={onSubmit} />
-      <ListContacts contacts={contacts} deleteContact={deleteContact} />
+      <div style={{display:"flex"}}>
+        <FormContact onSubmit={onSubmit} />
+        <ListContacts contacts={contacts} deleteContact={deleteContact} />
+      </div>
+
+      <Footer />
     </div>
   );
   // <div>

@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { setEmail } from 'redux/authReducer';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -13,27 +14,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const defaultTheme = createTheme();
 
 export const RegisterForm = ({ onSubmit }) => {
+  const dispatch = useDispatch();
+
+
   const handleSubmit = event => {
     event.preventDefault();
 
@@ -42,6 +29,8 @@ export const RegisterForm = ({ onSubmit }) => {
     const name = form.elements.userName.value;
     const email = form.elements.userEmail.value;
     const password = form.elements.userPassword.value;
+
+    dispatch(setEmail(email))
 
     onSubmit({
       name,
@@ -104,23 +93,6 @@ export const RegisterForm = ({ onSubmit }) => {
               autoComplete="current-password"
               minLength={7}
             />
-            {/* <label>
-              name
-              <input name="userName" type="text" required minLength={3} />
-            </label>
-            <label>
-              email
-              <input name="userEmail" type="text" />
-            </label>
-            <label>
-              password
-              <input
-                name="userPassword"
-                type="password"
-                required
-                minLength={7}
-              />
-            </label> */}
             <Button
               type="submit"
               fullWidth

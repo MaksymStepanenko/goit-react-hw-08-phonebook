@@ -5,6 +5,7 @@ import { LoginForm } from 'components/LoginForm/LoginForm';
 import { loginUserThunk } from 'redux/operation';
 import { selectAuthentificated } from 'redux/authReducer';
 import { Header } from 'components/Header/Header';
+import Footer from 'components/Footer/Footer';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const LoginPage = () => {
     <div>
       <Header/>
       <LoginForm onSubmit={onSubmit} />
+      <Footer/>
     </div>
   );
 };

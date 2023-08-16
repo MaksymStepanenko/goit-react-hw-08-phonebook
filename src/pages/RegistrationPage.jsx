@@ -6,6 +6,7 @@ import { registerUserThunk } from 'redux/operation';
 import { selectAuthentificated } from 'redux/authReducer';
 import SuccessfulRegistrationPage from './SuccessfulRegistrationPage';
 import { Header } from 'components/Header/Header';
+import Footer from 'components/Footer/Footer';
 
 const RegistrationPage = () => {
   const [userName, setUserName] = useState('');
@@ -23,6 +24,8 @@ const RegistrationPage = () => {
     <div>
       <Header />
       <RegisterForm onSubmit={onSubmit} />
+      <Footer /> 
+
     </div>
   );
 };

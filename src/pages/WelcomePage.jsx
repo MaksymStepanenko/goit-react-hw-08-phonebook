@@ -4,32 +4,18 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import CameraIcon from '@mui/icons-material/PhotoCamera';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-
-
-import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 import { selectAuthentificated } from 'redux/authReducer';
 import { Copyright } from 'components/Copyright/Copyright';
-
-
-
+import  Footer  from 'components/Footer/Footer';
 
 const WelcomePage = () => {
   const authenticated = useSelector(selectAuthentificated);
-
 
   if (authenticated) return <Navigate to="/contacts" />;
 
@@ -77,14 +63,10 @@ const WelcomePage = () => {
           </Stack>
         </Container>
       </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
-      {/* <div className="background-image"></div>
-      <h1>hello, I'm a service for storing your contacts </h1>
-      <nav>
-        <Link to="/login">Sign IN</Link>
-        <Link to="/register">Sign UP</Link>
-      </nav> */}
+      {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
+      <Footer />
     </div>
+    
   );
 };
 

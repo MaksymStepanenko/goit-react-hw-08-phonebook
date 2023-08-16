@@ -12,11 +12,17 @@ const initialState = {
   userData: null,
   token: null,
   authentificated: false,
+  email: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    setEmail: (state, action) => {
+      state.email = action.payload;
+    }
+  },
   extraReducers: builder =>
     builder
       //------REGISTER-------
@@ -88,6 +94,9 @@ const authSlice = createSlice({
       }),
 });
 
+export const { setEmail } = authSlice.actions;
+
+export const selectEmail = state => state.auth.email;
 export const selectUserLoading = state => state.auth.isLoading;
 export const selectUserError = state => state.auth.error;
 export const selectToken = state => state.auth.token;

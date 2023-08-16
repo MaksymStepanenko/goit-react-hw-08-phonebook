@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { setEmail } from 'redux/authReducer';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,8 +14,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
 export const LoginForm = ({ onSubmit }) => {
+  const dispatch = useDispatch();
   const defaultTheme = createTheme();
 
   const handleSubmit = event => {
@@ -22,6 +25,8 @@ export const LoginForm = ({ onSubmit }) => {
 
     const email = form.elements.userEmail.value;
     const password = form.elements.userPassword.value;
+
+    dispatch(setEmail(email));
 
     onSubmit({
       email,
@@ -52,10 +57,6 @@ export const LoginForm = ({ onSubmit }) => {
             noValidate
             sx={{ mt: 1 }}
           >
-            {/* <label>
-              email
-              <input name="userEmail" type="text" />
-            </label> */}
             <TextField
               margin="normal"
               required
@@ -66,15 +67,6 @@ export const LoginForm = ({ onSubmit }) => {
               autoComplete="email"
               autoFocus
             />
-            {/* <label>
-              password
-              <input
-                name="userPassword"
-                type="password"
-                required
-                minLength={7}
-              />
-            </label> */}
             <TextField
               margin="normal"
               required
@@ -85,6 +77,7 @@ export const LoginForm = ({ onSubmit }) => {
               id="password"
               autoComplete="current-password"
               minLength={7}
+              
             />
             <Button
               type="submit"

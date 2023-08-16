@@ -1,25 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { selectAuthentificated, selectEmail } from 'redux/authReducer';
+import { logoutUserThunk } from 'redux/operation';
 
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Button from '@mui/material/Button';
+
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { selectAuthentificated } from 'redux/authReducer';
-import { logoutUserThunk } from 'redux/operation';
+
 
 const linkStyles = {
   textDecoration: 'none',
@@ -30,7 +29,16 @@ const linkStyles = {
 const defaultTheme = createTheme();
 
 export const Header = () => {
+  const email = useSelector(selectEmail);
   const authenticated = useSelector(selectAuthentificated);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
+  };
 
   const dispatch = useDispatch();
 
@@ -46,11 +54,38 @@ export const Header = () => {
           <Link href="/" style={linkStyles}>
             <Typography variant="h6">myCONTACTS</Typography>
           </Link>
+          <Box sx={{ flexGrow: 1 }} />
           {authenticated && (
-            <div>
-              <p>email</p>
-              <button onClick={handleLogOut}>Log Out</button>
-            </div>
+            <>
+              <Typography variant="span">{email}</Typography>
+              <IconButton
+                size="xl"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleLogOut}>LogOut</MenuItem>
+              </Menu>
+            </>
           )}
         </Toolbar>
       </AppBar>
