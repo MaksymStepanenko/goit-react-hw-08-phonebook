@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { $instance } from './operation';
 
+
 export const requestContactsThunk = createAsyncThunk(
   'contacts/getAll',
   async (_, thunkApi) => {

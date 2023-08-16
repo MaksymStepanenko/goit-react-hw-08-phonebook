@@ -4,6 +4,7 @@ import { Navigate } from 'react-router-dom';
 import { LoginForm } from 'components/LoginForm/LoginForm';
 import { loginUserThunk } from 'redux/operation';
 import { selectAuthentificated } from 'redux/authReducer';
+import { Header } from 'components/Header/Header';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      <h1>loginPage</h1>
+      <Header/>
       <LoginForm onSubmit={onSubmit} />
     </div>
   );
