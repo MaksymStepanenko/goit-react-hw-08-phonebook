@@ -11,7 +11,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 import { selectAuthentificated } from 'redux/authReducer';
-import { Copyright } from 'components/Copyright/Copyright';
 import  Footer  from 'components/Footer/Footer';
 
 const WelcomePage = () => {

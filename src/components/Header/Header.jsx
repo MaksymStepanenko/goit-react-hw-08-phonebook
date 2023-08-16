@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
 import { selectAuthentificated, selectEmail } from 'redux/authReducer';
 import { logoutUserThunk } from 'redux/operation';
 
