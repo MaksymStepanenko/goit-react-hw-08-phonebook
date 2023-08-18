@@ -10,13 +10,15 @@ import {
   selectUserContacts,
 } from 'redux/contactsReducer';
 import { ListContacts } from 'components/ListContacts/ListContacts';
-import { selectAuthentificated } from 'redux/authReducer';
+import { selectAuthentificated, selectUserLoading } from 'redux/authReducer';
 import Footer from 'components/Footer/Footer';
+import { Loader } from 'components/Loader/Loader';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectUserContacts);
   const authentificated = useSelector(selectAuthentificated);
+  const isLoadint = useSelector(selectUserLoading);
 
   useEffect(() => {
     if (!authentificated) return;
@@ -37,7 +39,7 @@ const ContactsPage = () => {
   return (
     <div>
       <Header />
-      <div style={{display:"flex"}}>
+      <div style={{ display: 'flex' }}>
         <FormContact onSubmit={onSubmit} />
         <ListContacts contacts={contacts} deleteContact={deleteContact} />
       </div>

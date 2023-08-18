@@ -5,7 +5,7 @@ export const Loader = () => {
   return (
     <div className={css.wrapp}>
       <RotatingLines
-        strokeColor="blue"
+        strokeColor="skyblue"
         strokeWidth="5"
         animationDuration="0.75"
         width="96"
