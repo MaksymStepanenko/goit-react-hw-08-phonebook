@@ -8,6 +8,7 @@ import SuccessfulRegistrationPage from './SuccessfulRegistrationPage';
 import { Header } from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 
+
 const RegistrationPage = () => {
   const [userName, setUserName] = useState('');
   const dispatch = useDispatch();
@@ -24,8 +25,8 @@ const RegistrationPage = () => {
     <div>
       <Header />
       <RegisterForm onSubmit={onSubmit} />
-      <Footer /> 
 
+      <Footer />
     </div>
   );
 };

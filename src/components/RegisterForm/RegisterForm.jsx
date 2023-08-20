@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { setEmail } from 'redux/authReducer';
+import { PropTypes } from 'prop-types';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -114,4 +115,9 @@ export const RegisterForm = ({ onSubmit }) => {
       </Container>
     </ThemeProvider>
   );
+};
+
+
+RegisterForm.propTypes = {
+  onSubmit: PropTypes.func,
 };

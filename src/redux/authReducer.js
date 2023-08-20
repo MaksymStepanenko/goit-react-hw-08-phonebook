@@ -6,6 +6,7 @@ import {
   registerUserThunk,
 } from './operation';
 
+
 const initialState = {
   isLoading: false,
   error: null,
@@ -21,7 +22,7 @@ const authSlice = createSlice({
   reducers: {
     setEmail: (state, action) => {
       state.email = action.payload;
-    }
+    },
   },
   extraReducers: builder =>
     builder

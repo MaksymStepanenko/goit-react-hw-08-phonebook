@@ -8,11 +8,6 @@ import { refreshUserThunk } from 'redux/operation';
 import { Loader } from './Loader/Loader';
 
 import PrivateRoute from './PrivateRoute/PrivateRoute';
-// import ContactsPage from 'pages/ContactsPage';
-// import WelcomePage from 'pages/WelcomePage';
-// import LoginPage from 'pages/LoginPage';
-// import RegistrationPage from 'pages/RegistrationPage';
-// import SuccessfulRegistrationPage from 'pages/SuccessfulRegistrationPage';
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
 const WelcomePage = lazy(() => import('pages/WelcomePage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
@@ -20,7 +15,6 @@ const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const SuccessfulRegistrationPage = lazy(() =>
   import('pages/SuccessfulRegistrationPage')
 );
-// const MyComponent = lazy(() => import('path/to/MyComponent'));
 
 export const App = () => {
   const dispatch = useDispatch();

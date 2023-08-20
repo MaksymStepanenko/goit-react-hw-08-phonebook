@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { setEmail } from 'redux/authReducer';
+import { PropTypes } from 'prop-types';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,6 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ListContacts } from 'components/ListContacts/ListContacts';
 
 export const LoginForm = ({ onSubmit }) => {
   const dispatch = useDispatch();
@@ -100,4 +102,8 @@ export const LoginForm = ({ onSubmit }) => {
       </Container>
     </ThemeProvider>
   );
+};
+
+ListContacts.propTypes = {
+  onSubmit: PropTypes.func,
 };

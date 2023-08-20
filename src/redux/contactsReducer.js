@@ -77,6 +77,7 @@ const contactsSlice = createSlice({
       .addCase(addContactThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+        alert('To save the contact, enter a name and phone number');
       })
       // ------- DELETE CONTACT -------
       .addCase(deleteContactThunk.pending, state => {
