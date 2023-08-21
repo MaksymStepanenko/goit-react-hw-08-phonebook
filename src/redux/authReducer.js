@@ -41,7 +41,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
         alert(
-          'Oops...., Your email address is already in use, please enter another email or go to the login page'
+          "Oops...., Your email address is already in use or password doesn't have 7 characters, please enter another email or go to the login page"
         );
       })
       // ----- LOGIN -----
