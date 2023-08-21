@@ -2,12 +2,12 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { setEmail } from 'redux/authReducer';
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -105,8 +105,13 @@ export const RegisterForm = ({ onSubmit }) => {
             <Grid container>
               <Grid item xs></Grid>
               <Grid item>
-                <Link href="/login" variant="body2">
-                  {'Already have an account? Sign in'}
+                <Link
+                  to="/login"
+                  style={{
+                    color: '#1976d2',
+                  }}
+                >
+                  Already have an account? Sign in
                 </Link>
               </Grid>
             </Grid>

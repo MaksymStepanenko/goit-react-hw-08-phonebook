@@ -1,7 +1,5 @@
 import { Header } from 'components/Header/Header';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
@@ -10,14 +8,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import { selectAuthentificated } from 'redux/authReducer';
 import  Footer  from 'components/Footer/Footer';
 
 const WelcomePage = () => {
-  const authenticated = useSelector(selectAuthentificated);
-
-  if (authenticated) return <Navigate to="/contacts" />;
-
   return (
     <div>
       <Header />

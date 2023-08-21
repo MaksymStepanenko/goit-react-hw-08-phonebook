@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthentificated, selectEmail } from 'redux/authReducer';
 import { logoutUserThunk } from 'redux/operation';
+import { Link } from 'react-router-dom';
 
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -10,20 +11,12 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
-
-const linkStyles = {
-  textDecoration: 'none',
-  color: 'inherit', // Зберігаємо спадковий колір тексту
-  cursor: 'pointer',
-};
 
 const defaultTheme = createTheme();
 
@@ -50,8 +43,11 @@ export const Header = () => {
       <AppBar position="relative">
         <Toolbar>
           <ContactPhoneIcon sx={{ mr: 2 }} />
-          <Link href="/" style={linkStyles}>
+          {/* <Link href="/" style={linkStyles}>
             <Typography variant="h6">myCONTACTS</Typography>
+          </Link> */}
+          <Link to="/" style={{ textDecoration: 'none', color: 'white', fontSize: '34' }}>
+            myCONTACTS
           </Link>
           <Box sx={{ flexGrow: 1 }} />
           {authenticated && (

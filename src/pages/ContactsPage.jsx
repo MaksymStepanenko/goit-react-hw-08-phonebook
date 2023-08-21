@@ -23,7 +23,9 @@ const ContactsPage = () => {
     if (!authentificated) return;
 
     dispatch(requestContactsThunk());
-  }, [authentificated, dispatch]);
+  }, [
+    authentificated, 
+    dispatch]);
 
   const onSubmit = data => {
     if (contacts.some(contact => contact.name === data.name))

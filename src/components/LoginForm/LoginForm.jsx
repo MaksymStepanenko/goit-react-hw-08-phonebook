@@ -2,12 +2,12 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { setEmail } from 'redux/authReducer';
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -79,7 +79,6 @@ export const LoginForm = ({ onSubmit }) => {
               id="password"
               autoComplete="current-password"
               minLength={7}
-              
             />
             <Button
               type="submit"
@@ -92,8 +91,13 @@ export const LoginForm = ({ onSubmit }) => {
             <Grid container>
               <Grid item xs></Grid>
               <Grid item>
-                <Link href="/register" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link
+                  to="/register"
+                  style={{
+                    color: '#1976d2',
+                  }}
+                >
+                  Don't have an account? Sign Up
                 </Link>
               </Grid>
             </Grid>
